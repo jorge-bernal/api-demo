@@ -26,7 +26,7 @@ public class SwaggerConfig {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder().title("Jorge Bernal")
-                .description("Web Application Architecture Design Patterns. "
+                .description("Web Application Architecture Design Patterns: "
                         + "https://github.com/jorge-bernal/api-demo").build();
     }
 
