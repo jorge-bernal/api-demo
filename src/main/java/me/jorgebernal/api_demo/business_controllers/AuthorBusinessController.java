@@ -37,13 +37,9 @@ public class AuthorBusinessController {
     }
 
     public IdDto addPhoneNumber(String id, PhoneNumberDto phoneNumberDto) {
-        System.out.println(2);
         Author author = authorDao.findById(id).orElseThrow(() -> new NotFoundException("Author with id: " + id + "doesn't exist"));
-        System.out.println(3);
         author.addPhoneNumber(phoneNumberDto.getPhoneNumber());
-        System.out.println(4);
         authorDao.save(author);
-        System.out.println(5);
         return new IdDto(author.getId());
     }
 }

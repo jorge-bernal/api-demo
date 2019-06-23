@@ -40,7 +40,6 @@ public class AuthorResource {
 
     @PostMapping(value = ID_ID + PHONE_NUMBERS)
     public IdDto addPhoneNumber(@PathVariable String id, @RequestBody PhoneNumberDto phoneNumberDto) {
-        System.out.println(1);
         phoneNumberDto.verify();
         return this.authorBusinessController.addPhoneNumber(id, phoneNumberDto);
     }

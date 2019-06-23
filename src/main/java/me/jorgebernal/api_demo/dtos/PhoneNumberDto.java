@@ -10,7 +10,6 @@ public class PhoneNumberDto {
     }
 
     public PhoneNumberDto(Long phoneNumber) {
-        System.out.println("My number is" + phoneNumber);
         this.phoneNumber = phoneNumber;
     }
 
