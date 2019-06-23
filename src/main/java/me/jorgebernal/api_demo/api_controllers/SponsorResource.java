@@ -31,7 +31,6 @@ public class SponsorResource {
         return this.sponsorBusinessController.create(sponsorCreationDto);
     }
 
-
     @GetMapping
     public List<SponsorDto> readAll() {
         return this.sponsorBusinessController.readAll();

@@ -13,11 +13,11 @@ public class AuthorTest {
 
     @BeforeEach
     void before() {
-        author1 = new Author("AAA11");
+        author1 = new Author();
 
-        author2 = new Author("AAA12", "Pepe", Arrays.asList(633532277L, 633532288L), new IdentityDocument("NIF", "48903847Q"));
+        author2 = new Author("Pepe", Arrays.asList(633532277L, 633532288L), new IdentityDocument("NIF", "48903847Q"));
 
-        author3 = new Author("AAA13");
+        author3 = new Author();
         author3.setName("Pedro");
         author3.setPhoneNumbers(Arrays.asList(64789534L));
 
@@ -25,10 +25,8 @@ public class AuthorTest {
 
     @Test
     void testAttributes() {
-        assertEquals("AAA11", author1.getId());
         assertNull(author1.getName());
 
-        assertEquals("AAA12", author2.getId());
         assertEquals("Pepe", author2.getName());
         author2.setName("Jose");
         assertEquals("Jose", author2.getName());
@@ -37,7 +35,6 @@ public class AuthorTest {
         assertEquals("NIF", author2.getIdentityDocument().getType());
         assertEquals("48903847Q", author2.getIdentityDocument().getNumber());
 
-        assertEquals("AAA13", author3.getId());
         assertEquals("Pedro", author3.getName());
         assertTrue(author3.getPhoneNumbers().contains(64789534L));
 
@@ -45,13 +42,12 @@ public class AuthorTest {
 
     @Test
     void builder() {
-        author1 = Author.builder("AUT1").name("Jorge")
+        author1 = Author.builder().name("Jorge")
                 .identityDocument("NIF", "482928374K")
                 .phoneNumber(633432266L)
                 .phoneNumber(342346839L)
                 .build();
 
-        assertEquals("AUT1", author1.getId());
         assertEquals("NIF", author1.getIdentityDocument().getType());
         assertEquals("482928374K", author1.getIdentityDocument().getNumber());
         assertEquals("Jorge", author1.getName());

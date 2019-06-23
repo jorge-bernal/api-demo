@@ -1,11 +1,16 @@
 package me.jorgebernal.api_demo.documents;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Document
 public class Author {
 
-    private final String id;
+    @Id
+    private String id;
 
     private String name;
 
@@ -13,19 +18,18 @@ public class Author {
 
     private IdentityDocument identityDocument;
 
-    public Author(String id) {
-        this.id = id;
+    public Author() {
+        //empty for builder
     }
 
-    public Author(String id, String name, List<Long> phoneNumbers, IdentityDocument identityDocument) {
-        this.id = id;
+    public Author(String name, List<Long> phoneNumbers, IdentityDocument identityDocument) {
         this.name = name;
         this.phoneNumbers = phoneNumbers;
         this.identityDocument = identityDocument;
     }
 
-    public static Builder builder(String id) {
-        return new Builder(id);
+    public static Builder builder() {
+        return new Builder();
     }
 
     public String getId() {
@@ -75,8 +79,8 @@ public class Author {
 
         private List<Long> phoneNumbers;
 
-        private Builder(String id) {
-            author = new Author(id);
+        private Builder() {
+            author = new Author();
         }
 
         public Builder name(String name) {
