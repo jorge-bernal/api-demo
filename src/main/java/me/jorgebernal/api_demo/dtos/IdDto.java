@@ -1,5 +1,7 @@
 package me.jorgebernal.api_demo.dtos;
 
+import me.jorgebernal.api_demo.exceptions.BadRequestException;
+
 public class IdDto {
 
     private String id;
@@ -18,5 +20,11 @@ public class IdDto {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public void validate() {
+        if (id == null || id.isEmpty()) {
+            throw new BadRequestException("Invalid id");
+        }
     }
 }

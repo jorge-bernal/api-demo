@@ -34,6 +34,30 @@ public class SuggestionResourceIT {
     }
 
     @Test
+    void testDeleteExistingId() {
+        SponsorCreationDto sponsorCreationDto = new SponsorCreationDto("SPONSOR-1", 15000.0);
+        String id = this.webTestClient
+                .post().uri(SponsorResource.SPONSORS)
+                .body(BodyInserters.fromObject(sponsorCreationDto))
+                .exchange()
+                .expectBody(IdDto.class)
+                .returnResult().getResponseBody().getId();
+
+        this.webTestClient
+                .delete().uri(SponsorResource.SPONSORS + SponsorResource.ID_ID, id)
+                .exchange()
+                .expectStatus().isOk();
+    }
+
+    @Test
+    void testDeleteNonExistingId() {
+        this.webTestClient
+                .delete().uri(SponsorResource.SPONSORS + SponsorResource.ID_ID, "doesn't exist")
+                .exchange()
+                .expectStatus().isOk();
+    }
+
+    @Test
     void testSponsorException() {
         SponsorCreationDto sponsorCreationDto = new SponsorCreationDto(null, 15000.0);
         this.webTestClient
