@@ -12,24 +12,22 @@ public class BookTest {
     @BeforeEach
     void before() {
         book = new Book("A1");
-        book.setAuthor(new Author("AAA11"));
+        book.setAuthor(Author.builder().name("Jorge").build());
         book.setName("The Name of the Wind");
         book.setPrice(29.99);
     }
 
     @Test
     void idConstructorAndSetters() {
-        assertEquals("A1", book.getId());
-        assertEquals("AAA11", book.getAuthor().getId());
+        assertEquals("Jorge", book.getAuthor().getName());
         assertEquals("The Name of the Wind", book.getName());
         assertEquals(new Double(29.99), book.getPrice());
     }
 
     @Test
     void fullConstructor() {
-        book = new Book("A2", "A Wise Man Fear", 39.99, new Author("AAA12"));
+        book = new Book("A2", "A Wise Man Fear", 39.99, new Author());
         assertEquals("A2", book.getId());
-        assertEquals("AAA12", book.getAuthor().getId());
         assertEquals("A Wise Man Fear", book.getName());
         assertEquals(new Double(39.99), book.getPrice());
     }
