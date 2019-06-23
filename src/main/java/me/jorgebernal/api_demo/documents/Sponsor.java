@@ -1,23 +1,26 @@
 package me.jorgebernal.api_demo.documents;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.time.LocalDateTime;
+
+@Document
 public class Sponsor {
 
-    private final String id;
+    @Id
+    private String id;
 
     private String name;
 
-    private Integer antiquityMonths;
+    private LocalDateTime contractStart;
 
     private Double moneyPerMonth;
 
-    public Sponsor(String id) {
-        this.id = id;
-    }
 
-    public Sponsor(String id, String name, Integer antiquityMonths, Double moneyPerMonth) {
-        this.id = id;
+    public Sponsor(String name, Double moneyPerMonth) {
         this.name = name;
-        this.antiquityMonths = antiquityMonths;
+        this.contractStart = LocalDateTime.now();
         this.moneyPerMonth = moneyPerMonth;
     }
 
@@ -33,12 +36,12 @@ public class Sponsor {
         this.name = name;
     }
 
-    public Integer getAntiquityMonths() {
-        return antiquityMonths;
+    public LocalDateTime getContractStart() {
+        return contractStart;
     }
 
-    public void setAntiquityMonths(Integer antiquityMonths) {
-        this.antiquityMonths = antiquityMonths;
+    public void setContractStart(LocalDateTime contractStart) {
+        this.contractStart = contractStart;
     }
 
     public Double getMoneyPerMonth() {
