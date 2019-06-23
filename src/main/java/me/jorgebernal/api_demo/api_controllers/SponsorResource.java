@@ -2,6 +2,7 @@ package me.jorgebernal.api_demo.api_controllers;
 
 
 import me.jorgebernal.api_demo.business_controllers.SponsorBusinessController;
+import me.jorgebernal.api_demo.dtos.IdDto;
 import me.jorgebernal.api_demo.dtos.SponsorCreationDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,8 +24,8 @@ public class SponsorResource {
     }
 
     @PostMapping
-    public void create(@RequestBody SponsorCreationDto sponsorCreationDto) {
+    public IdDto create(@RequestBody SponsorCreationDto sponsorCreationDto) {
         sponsorCreationDto.validate();
-        this.sponsorBusinessController.create(sponsorCreationDto);
+        return this.sponsorBusinessController.create(sponsorCreationDto);
     }
 }
