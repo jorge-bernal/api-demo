@@ -8,6 +8,10 @@ public class IdDto {
         this.id = id;
     }
 
+    public IdDto() {
+
+    }
+
     public String getId() {
         return id;
     }

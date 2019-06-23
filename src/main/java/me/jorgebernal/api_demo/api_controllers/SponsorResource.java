@@ -4,11 +4,11 @@ package me.jorgebernal.api_demo.api_controllers;
 import me.jorgebernal.api_demo.business_controllers.SponsorBusinessController;
 import me.jorgebernal.api_demo.dtos.IdDto;
 import me.jorgebernal.api_demo.dtos.SponsorCreationDto;
+import me.jorgebernal.api_demo.dtos.SponsorDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(SponsorResource.SPONSORS)
@@ -28,4 +28,11 @@ public class SponsorResource {
         sponsorCreationDto.validate();
         return this.sponsorBusinessController.create(sponsorCreationDto);
     }
+
+
+    @GetMapping
+    public List<SponsorDto> readAll() {
+        return this.sponsorBusinessController.readAll();
+    }
+
 }

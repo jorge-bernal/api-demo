@@ -46,7 +46,7 @@ public class AuthorTest {
     @Test
     void builder() {
         author1 = Author.builder("AUT1").name("Jorge")
-                .IdentityDocument("NIF", "482928374K")
+                .identityDocument("NIF", "482928374K")
                 .phoneNumber(633432266L)
                 .phoneNumber(342346839L)
                 .build();

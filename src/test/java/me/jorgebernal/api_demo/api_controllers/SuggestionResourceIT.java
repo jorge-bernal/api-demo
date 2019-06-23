@@ -1,7 +1,9 @@
 package me.jorgebernal.api_demo.api_controllers;
 
 import me.jorgebernal.api_demo.ApiTestConfig;
+import me.jorgebernal.api_demo.dtos.IdDto;
 import me.jorgebernal.api_demo.dtos.SponsorCreationDto;
+import me.jorgebernal.api_demo.dtos.SponsorDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,13 +17,20 @@ public class SuggestionResourceIT {
     private WebTestClient webTestClient;
 
     @Test
-    void testCreate() {
+    void testCreateAndReadAll() {
         SponsorCreationDto sponsorCreationDto = new SponsorCreationDto("SPONSOR-1", 15000.0);
         this.webTestClient
                 .post().uri(SponsorResource.SPONSORS)
                 .body(BodyInserters.fromObject(sponsorCreationDto))
                 .exchange()
-                .expectStatus().isOk();
+                .expectStatus().isOk()
+                .expectBody(IdDto.class);
+
+        this.webTestClient
+                .get().uri(SponsorResource.SPONSORS)
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(SponsorDto.class);
     }
 
     @Test

@@ -92,7 +92,7 @@ public class Author {
             return this;
         }
 
-        public Builder IdentityDocument(String type, String number) {
+        public Builder identityDocument(String type, String number) {
             this.author.setIdentityDocument(new IdentityDocument(type, number));
             return this;
         }
