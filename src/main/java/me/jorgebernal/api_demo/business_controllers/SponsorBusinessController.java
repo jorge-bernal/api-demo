@@ -32,4 +32,8 @@ public class SponsorBusinessController {
         return sponsors.stream().map(SponsorDto::new).collect(Collectors.toList());
     }
 
+    public void delete(String id) {
+        sponsorDao.deleteById(id);
+    }
+
 }

@@ -14,7 +14,9 @@ import java.util.List;
 @RequestMapping(SponsorResource.SPONSORS)
 public class SponsorResource {
 
-    public static final String SPONSORS = "/sponsors";
+    static final String SPONSORS = "/sponsors";
+
+    static final String ID_ID = "/{id}";
 
     private SponsorBusinessController sponsorBusinessController;
 
@@ -33,6 +35,11 @@ public class SponsorResource {
     @GetMapping
     public List<SponsorDto> readAll() {
         return this.sponsorBusinessController.readAll();
+    }
+
+    @DeleteMapping(value = ID_ID)
+    public void delete(@PathVariable String id) {
+        sponsorBusinessController.delete(id);
     }
 
 }
