@@ -4,6 +4,7 @@ import me.jorgebernal.api_demo.ApiTestConfig;
 import me.jorgebernal.api_demo.dtos.AuthorCreationDto;
 import me.jorgebernal.api_demo.dtos.AuthorDto;
 import me.jorgebernal.api_demo.dtos.IdDto;
+import me.jorgebernal.api_demo.dtos.PhoneNumberDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -87,5 +88,35 @@ public class AuthorResourceIT {
                 .exchange()
                 .expectStatus().isEqualTo(HttpStatus.BAD_REQUEST);
     }
+
+    @Test
+    void testAddPhoneNumber() {
+        AuthorCreationDto authorCreationDto = new AuthorCreationDto("Jorge", "NIF", "0000000");
+        String id = this.webTestClient
+                .post().uri(AuthorResource.AUTHORS)
+                .body(BodyInserters.fromObject(authorCreationDto))
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(IdDto.class)
+                .returnResult().getResponseBody().getId();
+
+        this.webTestClient
+                .post().uri(AuthorResource.AUTHORS + AuthorResource.ID_ID + AuthorResource.PHONE_NUMBERS, id)
+                .body(BodyInserters.fromObject(new PhoneNumberDto(633532277L)))
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(IdDto.class);
+
+        AuthorDto authorDto = this.webTestClient
+                .get().uri(AuthorResource.AUTHORS)
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(AuthorDto.class)
+                .returnResult().getResponseBody().get(0);
+
+        assertEquals(633532277L, (long) authorDto.getPhoneNumbers().get(0));
+
+    }
+
 
 }

@@ -14,7 +14,7 @@ public class Author {
 
     private String name;
 
-    private List<Long> phoneNumbers;
+    private List<Long> phoneNumbers = new ArrayList<>();
 
     private IdentityDocument identityDocument;
 
@@ -26,6 +26,10 @@ public class Author {
         this.name = name;
         this.phoneNumbers = phoneNumbers;
         this.identityDocument = identityDocument;
+    }
+
+    public void addPhoneNumber(Long phoneNumber) {
+        this.phoneNumbers.add(phoneNumber);
     }
 
     public static Builder builder() {
@@ -59,6 +63,7 @@ public class Author {
     public void setIdentityDocument(IdentityDocument identityDocument) {
         this.identityDocument = identityDocument;
     }
+
 
     @Override
     public int hashCode() {

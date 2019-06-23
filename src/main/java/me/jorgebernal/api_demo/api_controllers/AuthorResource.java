@@ -4,6 +4,7 @@ import me.jorgebernal.api_demo.business_controllers.AuthorBusinessController;
 import me.jorgebernal.api_demo.dtos.AuthorCreationDto;
 import me.jorgebernal.api_demo.dtos.AuthorDto;
 import me.jorgebernal.api_demo.dtos.IdDto;
+import me.jorgebernal.api_demo.dtos.PhoneNumberDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +15,10 @@ import java.util.List;
 public class AuthorResource {
 
     static final String AUTHORS = "/authors";
+
+    static final String ID_ID = "/{id}";
+
+    static final String PHONE_NUMBERS = "/phoneNumbers";
 
     private AuthorBusinessController authorBusinessController;
 
@@ -31,6 +36,13 @@ public class AuthorResource {
     @GetMapping
     public List<AuthorDto> getAll() {
         return authorBusinessController.getAll();
+    }
+
+    @PostMapping(value = ID_ID + PHONE_NUMBERS)
+    public IdDto addPhoneNumber(@PathVariable String id, @RequestBody PhoneNumberDto phoneNumberDto) {
+        System.out.println(1);
+        phoneNumberDto.verify();
+        return this.authorBusinessController.addPhoneNumber(id, phoneNumberDto);
     }
 
 }
