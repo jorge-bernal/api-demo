@@ -20,6 +20,8 @@ public class AuthorResource {
 
     static final String PHONE_NUMBERS = "/phoneNumbers";
 
+    static final String REGISTERED_PHONE = "/registeredPhone";
+
     private AuthorBusinessController authorBusinessController;
 
     @Autowired
@@ -43,5 +45,12 @@ public class AuthorResource {
         phoneNumberDto.verify();
         return this.authorBusinessController.addPhoneNumber(id, phoneNumberDto);
     }
+
+    @GetMapping(value = AuthorResource.REGISTERED_PHONE)
+    public List<AuthorDto> getAuthorsWithPhoneNumbers() {
+        return authorBusinessController.getAuthorsWithPhoneNumbers();
+    }
+
+
 
 }
