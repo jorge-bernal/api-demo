@@ -42,4 +42,10 @@ public class AuthorBusinessController {
         authorDao.save(author);
         return new IdDto(author.getId());
     }
+
+    public List<AuthorDto> getAuthorsWithPhoneNumbers() {
+        List<Author> authors = authorDao.findAll();
+        return authors.stream().filter(author -> !author.getPhoneNumbers().isEmpty()).map(AuthorDto::new).collect(Collectors.toList());
+    }
+
 }
