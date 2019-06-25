@@ -11,7 +11,7 @@ public class BookTest {
 
     @BeforeEach
     void before() {
-        book = new Book("A1");
+        book = new Book();
         book.setAuthor(Author.builder().name("Jorge").build());
         book.setName("The Name of the Wind");
         book.setPrice(29.99);
@@ -26,8 +26,7 @@ public class BookTest {
 
     @Test
     void fullConstructor() {
-        book = new Book("A2", "A Wise Man Fear", 39.99, new Author());
-        assertEquals("A2", book.getId());
+        book = new Book("A Wise Man Fear", 39.99, new Author());
         assertEquals("A Wise Man Fear", book.getName());
         assertEquals(new Double(39.99), book.getPrice());
     }

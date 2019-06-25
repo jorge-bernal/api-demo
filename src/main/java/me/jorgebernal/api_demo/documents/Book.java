@@ -1,21 +1,26 @@
 package me.jorgebernal.api_demo.documents;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document
 public class Book {
 
-    private final String id;
+    @Id
+    private String id;
 
     private String name;
 
     private Double price;
 
+    @DBRef
     private Author author;
 
-    public Book(String id) {
-        this.id = id;
+    public Book() {
     }
 
-    public Book(String id, String name, Double price, Author author) {
-        this.id = id;
+    public Book(String name, Double price, Author author) {
         this.name = name;
         this.price = price;
         this.author = author;
